@@ -16,7 +16,7 @@ class Clientes():
 
         Pone la letra inicial en mayúsculas, comprueba que son nueve caracteres. Toma los 8 primeros, si es extranjero
         cambia la letra por el número, y aplica el algoritmo de comprobación de la letra basado en la normativa
-        Si es correcto devuelve true, si es falso devuelve false
+        Si es correcto devuelve true, si es falso devuelve falseeeee
 
         """
         try:
