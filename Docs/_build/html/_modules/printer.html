@@ -1,0 +1,579 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>printer &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para printer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">reportlab.pdfgen</span> <span class="kn">import</span> <span class="n">canvas</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">reportlab.lib.pagesizes</span> <span class="kn">import</span> <span class="n">A4</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtSql</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">var</span>
+
+
+<div class="viewcode-block" id="Printer"><a class="viewcode-back" href="../src/printer.html#printer.Printer">[documentos]</a><span class="k">class</span> <span class="nc">Printer</span><span class="p">():</span>
+
+<div class="viewcode-block" id="Printer.cabecera"><a class="viewcode-back" href="../src/printer.html#printer.Printer.cabecera">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cabecera</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para generar la cabecera general de los pdf.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logo</span> <span class="o">=</span> <span class="s1">&#39;.</span><span class="se">\\</span><span class="s1">img\logo.jpg&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s1">&#39;INFORMES&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setAuthor</span><span class="p">(</span><span class="s1">&#39;Samuel Vila&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">820</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">820</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">745</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">745</span><span class="p">)</span>
+            <span class="n">textcif</span> <span class="o">=</span> <span class="s1">&#39;CIF : A000000H&#39;</span>
+            <span class="n">textnom</span> <span class="o">=</span> <span class="s1">&#39;PROTECHSVILA&#39;</span>
+            <span class="n">textdir</span> <span class="o">=</span> <span class="s1">&#39;Randufe, Cotarel - N11&#39;</span>
+            <span class="n">texttlf</span> <span class="o">=</span> <span class="s1">&#39;630 63 52 92&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">805</span><span class="p">,</span> <span class="n">textcif</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">790</span><span class="p">,</span> <span class="n">textnom</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">775</span><span class="p">,</span> <span class="n">textdir</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">760</span><span class="p">,</span> <span class="n">texttlf</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawImage</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">760</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error cabvecera %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.pie"><a class="viewcode-back" href="../src/printer.html#printer.Printer.pie">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">pie</span><span class="p">(</span><span class="n">textlistado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo que genera el pie para todos los pdf.</span>
+
+<span class="sd">        :param textlistado:</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">.%m.%Y  %H.%M.%S&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Oblique&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">460</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">))</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;Página </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">getPageNumber</span><span class="p">()))</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">textlistado</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error pie %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.cabeceracli"><a class="viewcode-back" href="../src/printer.html#printer.Printer.cabeceracli">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cabeceracli</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método para generar la cebecera del pdf de lista de clientes</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Imprimimos por pantalla los elementos de imtecli[] para que quede como una tabla.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;LISTADO DE CLIENTES&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">itemcli</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="s1">&#39;DNI&#39;</span><span class="p">,</span> <span class="s1">&#39;APELLIDOS&#39;</span><span class="p">,</span> <span class="s1">&#39;NOMBRE&#39;</span><span class="p">,</span> <span class="s1">&#39;FECHA ALTA&#39;</span><span class="p">]</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">345</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">470</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error cabeceracli %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.reportCli"><a class="viewcode-back" href="../src/printer.html#printer.Printer.reportCli">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reportCli</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que imprime a todos los clientes.</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Llamamos al método cabecera general para imprimirla y a la cabecera de la lista de clientes.</span>
+<span class="sd">        Hacemos una busqueda en la BBDD de todos los clientes  y vamos imprimiendo los datos en sus</span>
+<span class="sd">        respectivos sitios (llos ajustamos con el eje X, ya que el eje Y es para cambiar de linea)</span>
+<span class="sd">        Llamamos al pie para imprimirlo.</span>
+
+<span class="sd">        Generamos el archivo en formato .pdf</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="s1">&#39;informes/listadoclientes.pdf&#39;</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">A4</span><span class="p">)</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;LISTADO DE CLIENTES&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceracli</span><span class="p">()</span>  <span class="c1">###</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select codigo, dni, apellidos, nombre, fechalta from clientes order by apellidos, nombre&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">50</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="mi">670</span>
+                <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">50</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">160</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">295</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">470</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+                        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">20</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="mi">50</span>
+                        <span class="n">j</span> <span class="o">=</span> <span class="mi">670</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;Siguiente pagina&#39;</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceracli</span><span class="p">()</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">informes&quot;</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rootPath</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;listadoclientes.pdf&#39;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+                <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error reportcli %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.cabecerapro"><a class="viewcode-back" href="../src/printer.html#printer.Printer.cabecerapro">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cabecerapro</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método para generar la cabecera del listado de productos.</span>
+
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Definimos el tipo y el tamaño de letra que vamos a usar con .setFornt().</span>
+<span class="sd">        Definimos el titulo y guardamos en itemcli el titulo de las cosas que vamos a guardar y las escribimos.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;LISTADO DE PRODUCTOS&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">itemcli</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CODIGO&#39;</span><span class="p">,</span> <span class="s1">&#39;PRODUCTO&#39;</span><span class="p">,</span> <span class="s1">&#39;PRECIO UNIDAD&#39;</span><span class="p">,</span> <span class="s1">&#39;STOCK&#39;</span><span class="p">]</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">195</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">410</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">510</span><span class="p">,</span> <span class="mi">690</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error cabecerapro %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.reportPro"><a class="viewcode-back" href="../src/printer.html#printer.Printer.reportPro">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reportPro</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que imprime los productos</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Definios el titulo, definimos el nombre que le vamos a dar al pdf y el tamaño de página.</span>
+<span class="sd">        Elegimos estilo y tamaño de letra.</span>
+<span class="sd">        LLmamamos al método que imprime la cebecera y al método que imprime la cabecera de los productos.</span>
+<span class="sd">        Buscamos los articulos en la base de datos y los vamos escribiendo en el pdf.</span>
+
+<span class="sd">        Finalemente, llamamamos al metodo .pie() para imprimir el pie del pdf y gardamos el archivo.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;LISTADO DE PRODUCTOS&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="s1">&#39;informes/listadoproductos.pdf&#39;</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">A4</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabecerapro</span><span class="p">()</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select codigo, nombre, precio, stock from articulos order by nombre&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="mi">665</span>
+                <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">70</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">350</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">430</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+                        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">30</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>
+                        <span class="n">j</span> <span class="o">=</span> <span class="mi">665</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;Siguiente pagina&#39;</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabecerapro</span><span class="p">()</span>
+
+            <span class="n">Printer</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">informes&quot;</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rootPath</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;listadoproductos.pdf&#39;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+                <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error reportcli %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.cabeceraFac"><a class="viewcode-back" href="../src/printer.html#printer.Printer.cabeceraFac">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cabeceraFac</span><span class="p">(</span><span class="n">numFac</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">dniCli</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que defina la cabecera de las facturas</span>
+
+<span class="sd">        :param numFac:</span>
+<span class="sd">        :param fecha:</span>
+<span class="sd">        :param dniCli:</span>
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Buscamos lso datos del cliente según su dni y los imprimimos.</span>
+<span class="sd">        A continuación, imprimimos el numero de factura, la fecha y los titulos de lso productos que vamos a imprimir.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span>
+                <span class="s1">&#39;select dni,apellidos, nombre, direccion, provincia, formaspago from clientes where dni = :dni&#39;</span><span class="p">)</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:dni&#39;</span><span class="p">,</span> <span class="n">dniCli</span><span class="p">)</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="s1">&#39;Cliente :&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="s1">&#39;DNI: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="s1">&#39;Formas de Pago:&#39;</span><span class="p">)</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">665</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">665</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39; -&#39;</span><span class="p">))</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">650</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span> <span class="mi">630</span><span class="p">,</span> <span class="s2">&quot;Factura nº : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">numFac</span><span class="p">))</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">450</span><span class="p">,</span> <span class="mi">630</span><span class="p">,</span> <span class="s2">&quot;Fecha: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">))</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">620</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">620</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">itemcli</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Codigo Venta&#39;</span><span class="p">,</span> <span class="s1">&#39;Artículo&#39;</span><span class="p">,</span> <span class="s1">&#39;Cantidad&#39;</span><span class="p">,</span> <span class="s1">&#39;Prec.Ud&#39;</span><span class="p">,</span> <span class="s1">&#39;Subtotal&#39;</span><span class="p">]</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">275</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">380</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">475</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemcli</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">525</span><span class="p">,</span> <span class="mi">595</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error cabeceraFac %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.reportFac"><a class="viewcode-back" href="../src/printer.html#printer.Printer.reportFac">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reportFac</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que sirve para generar el pdf de facturas-</span>
+
+<span class="sd">        :return: None</span>
+
+<span class="sd">        Recogemos el numero de factura, la fecha y el dni del cliente para pasarselo al método de .CabeceraFac()</span>
+<span class="sd">        Llamamos al método cabecera() y al método de cabeceraFac()</span>
+<span class="sd">        Hacemos una busqueda de las ventas de la factura y otra busqueda para buscar los datos de cada producto.</span>
+<span class="sd">        Imprimimos los datos de cada producto y luego, los datos de cada venta.</span>
+<span class="sd">        Hacemos los calculos necesarios para calcular el subtotal, el iva y el total y lo imprimimos.</span>
+<span class="sd">        Finalmente, guardamos la factura.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;Factura&#39;</span>
+            <span class="n">numFac</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblFactura</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="n">fechaFac</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">EditFechaFactura</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">EditCliDni</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="s1">&#39;informes/factura.pdf&#39;</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">A4</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceraFac</span><span class="p">(</span><span class="n">numFac</span><span class="p">,</span> <span class="n">fechaFac</span><span class="p">,</span> <span class="n">dni</span><span class="p">)</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select codventa, codarticventa, cantidad, precio from ventas where codfacventa =:numFac&#39;</span><span class="p">)</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:numFac&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">numFac</span><span class="p">))</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">90</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="mi">575</span>
+                <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+
+                    <span class="n">queryArt</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+                    <span class="n">queryArt</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select nombre, precio from articulos where codigo = :cod&#39;</span><span class="p">)</span>
+                    <span class="n">queryArt</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:cod&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+                    <span class="k">if</span> <span class="n">queryArt</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                        <span class="k">while</span> <span class="n">queryArt</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                            <span class="n">articulo</span> <span class="o">=</span> <span class="n">queryArt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                            <span class="n">precioUnit</span> <span class="o">=</span> <span class="n">queryArt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+                        <span class="n">subtotal</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">articulo</span><span class="p">))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">200</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">315</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">precioUnit</span><span class="p">))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">415</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">subtotal</span><span class="p">))</span>
+
+                        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">20</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="mi">90</span>
+                        <span class="n">j</span> <span class="o">=</span> <span class="mi">575</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;Siguiente pagina&#39;</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceraFac</span><span class="p">(</span><span class="n">numFac</span><span class="p">,</span> <span class="n">fechaFac</span><span class="p">,</span> <span class="n">dni</span><span class="p">)</span>
+
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span>
+                                    <span class="s1">&#39;Subtotal:   &#39;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblSubTotal</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span> <span class="o">+</span> <span class="s1">&#39; €&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="s1">&#39;IVA:     &#39;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblIva</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span> <span class="o">+</span> <span class="s1">&#39; €&#39;</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span>
+                                    <span class="s1">&#39;Total Factura: &#39;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblTotal</span><span class="o">.</span><span class="n">text</span><span class="p">()))</span> <span class="o">+</span> <span class="s1">&#39; €&#39;</span><span class="p">)</span>
+
+            <span class="n">Printer</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">informes&quot;</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rootPath</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;factura.pdf&#39;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+                <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error reportFac %&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Printer.cabeceraFacCli"><a class="viewcode-back" href="../src/printer.html#printer.Printer.cabeceraFacCli">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cabeceraFacCli</span><span class="p">(</span><span class="n">dniCliente</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que crea la cabecera para imprimir todas las facturas de un cliente</span>
+
+<span class="sd">        :param dniCliente:</span>
+<span class="sd">        :type dniCliente:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Buscamos los datos del cliente en la bbdd segun su dni.</span>
+<span class="sd">        Imprimimos estos datos yu creamos la cabecera para los datos de las facturas.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">queryCli</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">queryCli</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span>
+                <span class="s1">&#39;select dni,apellidos, nombre, direccion, provincia, formaspago from clientes where dni = :dni&#39;</span><span class="p">)</span>
+            <span class="n">queryCli</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:dni&#39;</span><span class="p">,</span> <span class="n">dniCliente</span><span class="p">)</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="s1">&#39;Cliente :&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">queryCli</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="k">while</span> <span class="n">queryCli</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="s1">&#39;DNI: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="s1">&#39;Formas de Pago:&#39;</span><span class="p">)</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">665</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span>
+                    <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">665</span><span class="p">,</span>
+                                       <span class="nb">str</span><span class="p">(</span><span class="n">queryCli</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;[]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39; -&#39;</span><span class="p">))</span>
+
+            <span class="n">itemFactura</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Codigo Factura&#39;</span><span class="p">,</span> <span class="s1">&#39;Fecha Factura&#39;</span><span class="p">,</span> <span class="s1">&#39;Total Factura&#39;</span><span class="p">]</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemFactura</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">275</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemFactura</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">475</span><span class="p">,</span> <span class="mi">605</span><span class="p">,</span> <span class="n">itemFactura</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">650</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error en cabecera de facturas de cliente : &quot;</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Printer.reportFacturaCliente"><a class="viewcode-back" href="../src/printer.html#printer.Printer.reportFacturaCliente">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reportFacturaCliente</span><span class="p">():</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Método que imprime todas las facturas de cada cliente, resumidas en un pdf.</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Llamamos al método cabecera y cabeceraFacCli para que impriman la cabecera general del pdf y luego, la cabecera</span>
+<span class="sd">        personalizada para este dpf.</span>
+<span class="sd">        Buscamos todas las facturas de este cliente en la bbdd.</span>
+<span class="sd">        Imprimimos los datos de la factura.</span>
+<span class="sd">        Aprovechamos el codigo de la factura para buscar los productos que le vendimos y poder calcular el precio de cada factura.</span>
+<span class="sd">        Finalmente imprimimos el precio de cada factura, los sumamos e imprimimos también el total gastado de ese cliente.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">sumaTotal</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">textlistado</span> <span class="o">=</span> <span class="s1">&#39;Facturas de un cliente&#39;</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="s1">&#39;informes/facturasDeCliente.pdf&#39;</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">A4</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+            <span class="n">dniCli</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">EditCliDni</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceraFacCli</span><span class="p">(</span><span class="n">dniCli</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="mi">605</span>
+
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">queryFac</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+            <span class="n">queryFac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select codfac, fecha from facturas where dni = :dni&#39;</span><span class="p">)</span>
+            <span class="n">queryFac</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:dni&#39;</span><span class="p">,</span> <span class="n">dniCli</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">queryFac</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                <span class="k">while</span> <span class="n">queryFac</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="mi">150</span><span class="p">:</span>
+                        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">25</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryFac</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">285</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">queryFac</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+                        <span class="n">codfacventa</span> <span class="o">=</span> <span class="n">queryFac</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+                        <span class="n">queryVentas</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
+                        <span class="n">queryVentas</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s1">&#39;select precio from ventas where codfacventa =:numFac&#39;</span><span class="p">)</span>
+                        <span class="n">queryVentas</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s1">&#39;:numFac&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">codfacventa</span><span class="p">))</span>
+
+                        <span class="n">precioTotal</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="k">if</span> <span class="n">queryVentas</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+                            <span class="k">while</span> <span class="n">queryVentas</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+                                <span class="n">precioTotal</span> <span class="o">=</span> <span class="n">precioTotal</span> <span class="o">+</span> <span class="n">queryVentas</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+                            <span class="n">iva</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">precioTotal</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.21</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                            <span class="n">precioTotal</span> <span class="o">=</span> <span class="n">precioTotal</span> <span class="o">+</span> <span class="n">iva</span>
+                            <span class="n">sumaTotal</span> <span class="o">=</span> <span class="n">precioTotal</span><span class="o">+</span><span class="n">sumaTotal</span>
+
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">490</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">precioTotal</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">y</span> <span class="o">=</span> <span class="mi">605</span>
+
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;Siguiente pagina&#39;</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabecera</span><span class="p">()</span>
+                        <span class="n">Printer</span><span class="o">.</span><span class="n">cabeceraFacCli</span><span class="p">(</span><span class="n">dniCli</span><span class="p">)</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+
+
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">drawRightString</span><span class="p">(</span><span class="mi">550</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="s2">&quot;Total de todas las facturas : &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">sumaTotal</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span> <span class="s2">&quot; €&quot;</span><span class="p">)</span>
+            <span class="n">Printer</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">textlistado</span><span class="p">)</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">rep</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">rootPath</span> <span class="o">=</span> <span class="s2">&quot;.</span><span class="se">\\</span><span class="s2">informes&quot;</span>
+            <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">rootPath</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;facturasDeCliente.pdf&#39;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rootPath</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+                <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error al generear todas las facturas de un cliente : &#39;</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>facturas module &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-facturas">
+<span id="facturas-module"></span><h1>facturas module<a class="headerlink" href="#module-facturas" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="facturas.Facturas">
+<em class="property">class </em><code class="sig-prename descclassname">facturas.</code><code class="sig-name descname">Facturas</code><a class="reference internal" href="../_modules/facturas.html#Facturas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="facturas.Facturas.abrirCalendar">
+<em class="property">static </em><code class="sig-name descname">abrirCalendar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.abrirCalendar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.abrirCalendar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Abrimos el calendario de la ventana de facturas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.altaFactura">
+<em class="property">static </em><code class="sig-name descname">altaFactura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.altaFactura"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.altaFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cargamos los datos para dar de alta una factura.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Utilizamos el dni y la fecha de los EditText para llamar al método de Conexion.altaFac y dar de alta la factura.
+Después llamamos al método de Facturas.prepararTablaventas() para limpiar la tabla ventas y cargarle los
+productos al comboBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.anularVenta">
+<em class="property">static </em><code class="sig-name descname">anularVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.anularVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.anularVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método para anular una venta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Según el elemento seleccionado, cogemos el codigo de la venta y llamamos al método .anulaVenta() pasándole
+el codigo de la venta para que la anule.
+Luego cargamos de nuevo, las ventas de la factura con el método mostrarVentasfac()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.borrarFactura">
+<em class="property">static </em><code class="sig-name descname">borrarFactura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.borrarFactura"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.borrarFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que carga el codigo de la factura que será borrada.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Cargamos el codigo de la factura y llamamos al metodo Conexion.borraFac() para que borre esta factura.
+Despuiés limpiamos la ventana de facturación con el método Conexion.limpiarSeccionFacturacion()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.cargarFactura">
+<em class="property">static </em><code class="sig-name descname">cargarFactura</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.cargarFactura"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.cargarFactura" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cargamos los datos de una factura en concreto en sus respectivos editText y listamos sus ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Cargamos el codigo y la fecha de la factura que están en la table de facturas, en sus editText
+y llamamos al método de Conexion.ListadoVentasFac() para que nos liste las ventas de esa factura
+y las liste en la tabla ventas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.cargarFecha">
+<em class="property">static </em><code class="sig-name descname">cargarFecha</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">qDate</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.cargarFecha"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.cargarFecha" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cargamos la fecha seleccionada en el editText de fecha.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>qDate</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.mostrarVentasfac">
+<em class="property">static </em><code class="sig-name descname">mostrarVentasfac</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.mostrarVentasfac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.mostrarVentasfac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cargamos el comboBox y listamos las ventas de la factura</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Cargamos el comboBox con el método .cargarCmbventa() y buscamos las ventas de una factura
+llamando al método .listadoVentasFac() pasando el codigo de la factura.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.prepararTablaventas">
+<em class="property">static </em><code class="sig-name descname">prepararTablaventas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.prepararTablaventas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.prepararTablaventas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Limpio la tabla de ventas y le cargo los productos en el
+comboBox</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>index</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Llamo al método   .cargarCmbventa() para cargarle los articulos.
+Limpio la tabla de ventas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="facturas.Facturas.procesoVenta">
+<em class="property">static </em><code class="sig-name descname">procesoVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/facturas.html#Facturas.procesoVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#facturas.Facturas.procesoVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Según el producto que elija el cliente, cargaremos unos datos u otros en la tabla de ventas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Cogemos el codigo de la factura, el nombre del articulo, buscamos el articulos en la BBDD según su nombre
+y nos devuelve el precio por unidad y su codigo.</p>
+<p>Vamos cargando los datos en las columnas y calculamos el subtotal, el total y el iva para añadirselo a sus
+respectivos labels.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/facturas.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

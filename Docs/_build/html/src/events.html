@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>events module &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-events">
+<span id="events-module"></span><h1>events module<a class="headerlink" href="#module-events" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="events.Eventos">
+<em class="property">class </em><code class="sig-prename descclassname">events.</code><code class="sig-name descname">Eventos</code><a class="reference internal" href="../_modules/events.html#Eventos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="events.Eventos.AbrirPrinter">
+<em class="property">static </em><code class="sig-name descname">AbrirPrinter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.AbrirPrinter"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.AbrirPrinter" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que abre la ventana de imprimir</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.Backup">
+<em class="property">static </em><code class="sig-name descname">Backup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.Backup"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.Backup" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método con el hacemos backup de la bbdd</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Seleccionamos la fecha actuales , le escribimos el nombre del dia y la hora y la comprimimos a .zip
+Modificamos el lblstatus para que diga «COPIA DE SEGURIDAD DE BASE DE DATOS CREADA».</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.CargarProv">
+<em class="property">static </em><code class="sig-name descname">CargarProv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.CargarProv"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.CargarProv" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método carga las provincias en el comboBox de la ventana de clientes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.OpenDir">
+<em class="property">static </em><code class="sig-name descname">OpenDir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.OpenDir"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.OpenDir" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que abre la ventana de abrir directorio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.Salir">
+<em class="property">static </em><code class="sig-name descname">Salir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.Salir"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.Salir" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que llama a la ventana salir</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.avisoDni">
+<em class="property">static </em><code class="sig-name descname">avisoDni</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.avisoDni"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.avisoDni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que muestra el aviso de dni incorrecto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.avisoImportar">
+<em class="property">static </em><code class="sig-name descname">avisoImportar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.avisoImportar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.avisoImportar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ventana que de confirmacion antes de restaurar una base de datos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>opc</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>Boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.closeConfirmBorrar">
+<em class="property">static </em><code class="sig-name descname">closeConfirmBorrar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.closeConfirmBorrar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.closeConfirmBorrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método cierra la ventana de borrar cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.closeConfirmBorrarProd">
+<em class="property">static </em><code class="sig-name descname">closeConfirmBorrarProd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.closeConfirmBorrarProd"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.closeConfirmBorrarProd" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método cierra la ventana de borrar producto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.closeConfirmModificar">
+<em class="property">static </em><code class="sig-name descname">closeConfirmModificar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.closeConfirmModificar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.closeConfirmModificar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método cierra la ventana de modificar cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.closeConfirmModificarArt">
+<em class="property">static </em><code class="sig-name descname">closeConfirmModificarArt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.closeConfirmModificarArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.closeConfirmModificarArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método cierra la ventana de modificar producto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.closeSalir">
+<em class="property">static </em><code class="sig-name descname">closeSalir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.closeSalir"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.closeSalir" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que cierra la ventana salir</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.confirmBorrar">
+<em class="property">static </em><code class="sig-name descname">confirmBorrar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dni</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.confirmBorrar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.confirmBorrar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que llama a la ventana Borrar cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>dni</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.confirmBorrarProducto">
+<em class="property">static </em><code class="sig-name descname">confirmBorrarProducto</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.confirmBorrarProducto"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.confirmBorrarProducto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que llama a la ventana Borrar producto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>codigo</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.confirmModificar">
+<em class="property">static </em><code class="sig-name descname">confirmModificar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em>, <em class="sig-param"><span class="n">newdata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.confirmModificar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.confirmModificar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método llama a la ventana de modificar cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>codigo</strong> – </p></li>
+<li><p><strong>newdata</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.confirmModificarArt">
+<em class="property">static </em><code class="sig-name descname">confirmModificarArt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em>, <em class="sig-param"><span class="n">newdata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.confirmModificarArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.confirmModificarArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método llama a la ventana de modificar producto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>codigo</strong> – </p></li>
+<li><p><strong>newdata</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.importarDatos">
+<em class="property">static </em><code class="sig-name descname">importarDatos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.importarDatos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.importarDatos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="events.Eventos.restaurarBD">
+<em class="property">static </em><code class="sig-name descname">restaurarBD</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/events.html#Eventos.restaurarBD"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#events.Eventos.restaurarBD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método para restaurar la BBDD desde una copia de seguridad</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Abrimos una ventana para seleccionar la bbdd, la seleccionamos, la decomprimimos y nos conectamos a ella.
+Luego mostramos los clientes, articulos y facturas.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/events.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

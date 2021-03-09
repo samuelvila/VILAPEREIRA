@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="toolbarbackup">
+    <file>backup.png</file>
+  </qresource>
+</RCC>

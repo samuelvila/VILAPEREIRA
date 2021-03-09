@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>printer module &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-printer">
+<span id="printer-module"></span><h1>printer module<a class="headerlink" href="#module-printer" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="printer.Printer">
+<em class="property">class </em><code class="sig-prename descclassname">printer.</code><code class="sig-name descname">Printer</code><a class="reference internal" href="../_modules/printer.html#Printer"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="printer.Printer.cabecera">
+<em class="property">static </em><code class="sig-name descname">cabecera</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabecera"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabecera" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo para generar la cabecera general de los pdf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.cabeceraFac">
+<em class="property">static </em><code class="sig-name descname">cabeceraFac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">numFac</span></em>, <em class="sig-param"><span class="n">fecha</span></em>, <em class="sig-param"><span class="n">dniCli</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabeceraFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabeceraFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que defina la cabecera de las facturas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>numFac</strong> – </p></li>
+<li><p><strong>fecha</strong> – </p></li>
+<li><p><strong>dniCli</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Buscamos lso datos del cliente según su dni y los imprimimos.
+A continuación, imprimimos el numero de factura, la fecha y los titulos de lso productos que vamos a imprimir.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.cabeceraFacCli">
+<em class="property">static </em><code class="sig-name descname">cabeceraFacCli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dniCliente</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabeceraFacCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabeceraFacCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que crea la cabecera para imprimir todas las facturas de un cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>dniCliente</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Buscamos los datos del cliente en la bbdd segun su dni.
+Imprimimos estos datos yu creamos la cabecera para los datos de las facturas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.cabeceracli">
+<em class="property">static </em><code class="sig-name descname">cabeceracli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabeceracli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabeceracli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método para generar la cebecera del pdf de lista de clientes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Imprimimos por pantalla los elementos de imtecli[] para que quede como una tabla.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.cabecerapro">
+<em class="property">static </em><code class="sig-name descname">cabecerapro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabecerapro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabecerapro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método para generar la cabecera del listado de productos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Definimos el tipo y el tamaño de letra que vamos a usar con .setFornt().
+Definimos el titulo y guardamos en itemcli el titulo de las cosas que vamos a guardar y las escribimos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.pie">
+<em class="property">static </em><code class="sig-name descname">pie</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">textlistado</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.pie"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.pie" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo que genera el pie para todos los pdf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>textlistado</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.reportCli">
+<em class="property">static </em><code class="sig-name descname">reportCli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.reportCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.reportCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que imprime a todos los clientes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Llamamos al método cabecera general para imprimirla y a la cabecera de la lista de clientes.
+Hacemos una busqueda en la BBDD de todos los clientes  y vamos imprimiendo los datos en sus
+respectivos sitios (llos ajustamos con el eje X, ya que el eje Y es para cambiar de linea)
+Llamamos al pie para imprimirlo.</p>
+<p>Generamos el archivo en formato .pdf</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.reportFac">
+<em class="property">static </em><code class="sig-name descname">reportFac</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.reportFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.reportFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que sirve para generar el pdf de facturas-</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recogemos el numero de factura, la fecha y el dni del cliente para pasarselo al método de .CabeceraFac()
+Llamamos al método cabecera() y al método de cabeceraFac()
+Hacemos una busqueda de las ventas de la factura y otra busqueda para buscar los datos de cada producto.
+Imprimimos los datos de cada producto y luego, los datos de cada venta.
+Hacemos los calculos necesarios para calcular el subtotal, el iva y el total y lo imprimimos.
+Finalmente, guardamos la factura.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.reportFacturaCliente">
+<em class="property">static </em><code class="sig-name descname">reportFacturaCliente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.reportFacturaCliente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.reportFacturaCliente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que imprime todas las facturas de cada cliente, resumidas en un pdf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Llamamos al método cabecera y cabeceraFacCli para que impriman la cabecera general del pdf y luego, la cabecera
+personalizada para este dpf.
+Buscamos todas las facturas de este cliente en la bbdd.
+Imprimimos los datos de la factura.
+Aprovechamos el codigo de la factura para buscar los productos que le vendimos y poder calcular el precio de cada factura.
+Finalmente imprimimos el precio de cada factura, los sumamos e imprimimos también el total gastado de ese cliente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.reportPro">
+<em class="property">static </em><code class="sig-name descname">reportPro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.reportPro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.reportPro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que imprime los productos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Definios el titulo, definimos el nombre que le vamos a dar al pdf y el tamaño de página.
+Elegimos estilo y tamaño de letra.
+LLmamamos al método que imprime la cebecera y al método que imprime la cabecera de los productos.
+Buscamos los articulos en la base de datos y los vamos escribiendo en el pdf.</p>
+<p>Finalemente, llamamamos al metodo .pie() para imprimir el pie del pdf y gardamos el archivo.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/printer.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

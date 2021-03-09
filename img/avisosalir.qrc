@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="avisosalir">
+    <file>warning.jpg</file>
+  </qresource>
+</RCC>

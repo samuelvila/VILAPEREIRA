@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>conexion module &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-conexion">
+<span id="conexion-module"></span><h1>conexion module<a class="headerlink" href="#module-conexion" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="conexion.Conexion">
+<em class="property">class </em><code class="sig-prename descclassname">conexion.</code><code class="sig-name descname">Conexion</code><a class="reference internal" href="../_modules/conexion.html#Conexion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="conexion.Conexion.altaArt">
+<em class="property">static </em><code class="sig-name descname">altaArt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">articulo</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.altaArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.altaArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo con el que damos de alta articulos en la BBDD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>articulo</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos los datos del producto, y los añadimos a la BBDD con insert.
+Con bindValue indicamos los datos que añadiremoS.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.altaCli">
+<em class="property">static </em><code class="sig-name descname">altaCli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cliente</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.altaCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.altaCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que permite dar de alta a un cliente en la BBDD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>cliente</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Creamos un query para indicar los datos del nuevo cliente y con .bindValue() indicamos el datos que vamos a insertar
+en el nuevo cliente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.altaFac">
+<em class="property">static </em><code class="sig-name descname">altaFac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dni</span></em>, <em class="sig-param"><span class="n">fecha</span></em>, <em class="sig-param"><span class="n">nomb</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.altaFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.altaFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añadimos una factura a la bbdd</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dni</strong> – </p></li>
+<li><p><strong>fecha</strong> – </p></li>
+<li><p><strong>nomb</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el dni y el nombre del cliente y la fecha de cuando se realizó la factura.
+Añadimos la factura con insert y le escribimos los datos recibido con .bindValue()
+Hacemos que el statusBar, escriba  «FACTURA CREADA».
+Una vez añadida la factura, recargamos la tabla de facturas para que aparezca la nueva factura ( .mostrarFacturas() )</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.altaVenta">
+<em class="property">static </em><code class="sig-name descname">altaVenta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.altaVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.altaVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que añade una venta a la BBDD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Según los datos cargados en la tabla ventas después de haber hecho click en el producto deseado, y ya escrita la
+cantidad, utilizamos esos datos para añadirla a la BBDD y dejarlos escritos en la tabla.
+Finalmente añadimos una fila y recargamos el comboBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.anulaVenta">
+<em class="property">static </em><code class="sig-name descname">anulaVenta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codVenta</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.anulaVenta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.anulaVenta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que anula una venta y la borra de la tabla de ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>codVenta</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Con el código de venta recibido, hacemos una busqueda en la BBDD y la eliminados con delete.
+Modificamos el lblStatus por «Venta Anulada»</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.bajaArt">
+<em class="property">static </em><code class="sig-name descname">bajaArt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.bajaArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.bajaArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo que permite dar de baja a un artículo de la BBDD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>codigo</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el código del artículo a borrar y lo borramos con delete.
+Indicamos el codigo del artículo con bindValue()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.bajaCli">
+<em class="property">static </em><code class="sig-name descname">bajaCli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dni</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.bajaCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.bajaCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que permite dar de baja a un cliente utiizando su dni.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>dni</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Reibimos el dni del cliente y con delete borramos el cliente indicando su dni mediante bindValue()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.borraFac">
+<em class="property">static </em><code class="sig-name descname">borraFac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codfac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.borraFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.borraFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Borramos una factura de la BBDD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>codfac</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el codigo de la factura que queremos borrar, y hacemos una busqueda en la BBDD y la borramos
+con delete.
+Establecemos el lblstatus a «Factura Anulada»
+También borramos todas las ventas relacionadas con esa factura. Usamos delete y el codigo de la factura, pero esta
+vez en ventas.</p>
+<p>Modificamos los valores de lblSubtotal,Total e IVA a 0</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.buscarCliente">
+<em class="property">static </em><code class="sig-name descname">buscarCliente</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dni</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.buscarCliente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.buscarCliente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo para buscar cliente según su dni.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>dni</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el dni del cliente y lo buscamos segun su dni con select.
+Usamos el bindValue para indicar el dni del cliente.
+Una vez encontrado, cargamos sus datos en sus editText, label, spinBox, CheckBox y radioButton.
+También seleccionamos el cliente en la tabla de clientes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.cargarArticulo">
+<em class="property">static </em><code class="sig-name descname">cargarArticulo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.cargarArticulo"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.cargarArticulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo que carga un articulo cuando hacemos click en el (en la tabla de articulos)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Seleccionamos el código que está cargado en el label del codigo del producto y hacemos una busqueda en la BBDD
+( select )
+Nos traemos todos sus datos y los vamos escribiendo en sus respectivos sitios, editText, labels…  ( .setText() )</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.cargarCliente">
+<em class="property">static </em><code class="sig-name descname">cargarCliente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.cargarCliente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.cargarCliente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que carga los datos del cliente en sus editText y label correspondiente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Seleccionamos los datos del cliente según su dni, el cual lo cogemos del editText de dni previamente cargado.
+Una vez recibidos los datos, los vamos metiendo en sus respectivos editText, checkBox,radioButton, labels y spinBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.cargarCmbventa">
+<em class="property">static </em><code class="sig-name descname">cargarCmbventa</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.cargarCmbventa"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.cargarCmbventa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>En este método le cargamos los artículos al comboBox de la tabla de ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Limpiamos el comboBox, le añadimos el campor por defecto «» y a continuacion hacemos una busqueda en la BBDD para traer
+todos los articulos disponibles. Una vez hecha la búsqueda, se los cargamos al comboBox.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.cargarFac">
+<em class="property">static </em><code class="sig-name descname">cargarFac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cod</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.cargarFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.cargarFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>En este método cargamos los datos del cliente de una factura determinada en sus respectivos editText.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>cod</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el codigo de la factura.Buscamos la factura en la BBDD con select y escribimos el nombre del cliente
+y su dni en los respectivos edtiText.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.db_connect">
+<em class="property">static </em><code class="sig-name descname">db_connect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filname</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.db_connect"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.db_connect" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que permite la conexión con la BBDD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>filname</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>True or False</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>Bool</p>
+</dd>
+</dl>
+<p>Recibimos el nombre de la BBDD, añadimos la base de datos y la abrimos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.limpiarSeccionFacturacion">
+<em class="property">static </em><code class="sig-name descname">limpiarSeccionFacturacion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.limpiarSeccionFacturacion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.limpiarSeccionFacturacion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Aquí limpiamos la ventana de facturación.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Recorremos todos los editText para hacer que escriban «»
+Llamamos al método prepararTablaventas para limpiar la tabla ventas y cargarle los articulos en el
+comboBox</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.listadoVentasFac">
+<em class="property">static </em><code class="sig-name descname">listadoVentasFac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codfac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.listadoVentasFac"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.listadoVentasFac" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método con el que listamos todas las ventas de una factura en concreto en la tabla ventas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>codfac</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Limpiamos la tabla ventas.
+Recibimos el codigo de la factura, buscamos las ventas que tengan ese codigo de factura y nos devuelven
+el codigo de la venta y el codigo del producto y la cantida.</p>
+<p>Añadimos una fila, buscamos el nombre y precio del producto y escribimos los datos en la tabla ventas.
+Para calcular el subtotal, multiplicamos la cantidad de productos por el precio de la unidad del producto en
+concreto.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.modifArt">
+<em class="property">static </em><code class="sig-name descname">modifArt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em>, <em class="sig-param"><span class="n">newdata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.modifArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.modifArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>En este método, cargamos en la BBDD los datos que hemos modificado.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>codigo</strong> – </p></li>
+<li><p><strong>newdata</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Con update actualizamos en la bbdd los datos que hemos cambiado, y con .bindValue() cogemos los datos que le hemos
+pasado en newdata y los seleccionamos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.modifCli">
+<em class="property">static </em><code class="sig-name descname">modifCli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">codigo</span></em>, <em class="sig-param"><span class="n">newdata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.modifCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.modifCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que permite modificar los datos de un cliente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>codigo</strong> – </p></li>
+<li><p><strong>newdata</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Recibimos el código del cliente y todos los datos del cliente (ya que se puede actualizar más de un dato)
+y los actuzalizamos en la base de datos con update.
+Utilizamos el bindValue() para indicar los datos,tanto los que están actualizados, como los que no.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.mostrarArticulos">
+<em class="property">static </em><code class="sig-name descname">mostrarArticulos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.mostrarArticulos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.mostrarArticulos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que muestra los artículos en la tabla TableArt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Hacemos un select * para seleccionar todos los productos de la BBDD y los recorremos con un bucle while.
+A medida que vamos añadiendo los datos, cuando ya hemos añadido los datos que queremos a la tabla, cambiamos de
+fila y pasamos al siguiente producto.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.mostrarClientes">
+<em class="property">static </em><code class="sig-name descname">mostrarClientes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.mostrarClientes"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.mostrarClientes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que muestra los datos de los clientes en la tabla TableClient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Seleccionamos los datos que queremos obtener de los empleados, en este caso (dni, apellidos y nombre).
+A continucación los vamos añadiendo a la tabla por con el método .setItem().
+Cuando un cliente ya está añadido a la tabla, se incrementa en 1 la fila y continuamos añadiendo los datos
+del siguiente cliente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.mostrarFacturas">
+<em class="property">static </em><code class="sig-name descname">mostrarFacturas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.mostrarFacturas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.mostrarFacturas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método que carga las facturas en la tabla de facturas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Cogemos el codigo de la factura y su fecha de la BBDD y las escribimos en la tabla.
+Si no hay facturas, haremos un clearContents() de la tabla.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.mostrarFacturascli">
+<em class="property">static </em><code class="sig-name descname">mostrarFacturascli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.mostrarFacturascli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.mostrarFacturascli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Mostramos las facturas de un cliente determinado, según el dni.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Cogemos el dni del editText de DNI y con el, buscamos las facturas de este dni.
+A continuación, la escribimos en la tabla de facturas.
+Si el cliente no tiene facturas, el statusBar, será «Cliente sin facturas»</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="conexion.Conexion.obtenCodPrec">
+<em class="property">static </em><code class="sig-name descname">obtenCodPrec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">articulo</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/conexion.html#Conexion.obtenCodPrec"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#conexion.Conexion.obtenCodPrec" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Obtenemos el codigo y el precio de un producto según su nombre.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>articulo</strong> – </p>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>dato</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>Array</p>
+</dd>
+</dl>
+<p>Recibimos el nombre del articulo y con el, buscamos en la base de datos el producto deseado y guardamos los
+datos para retornarlos.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/conexion.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

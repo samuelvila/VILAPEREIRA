@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="avisoImportar">
+    <file>avisos1.jpg</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="restBack">
+    <file>backdown.png</file>
+  </qresource>
+</RCC>

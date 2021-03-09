@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>articulos module &#8212; documentación de VILAPEREIRA - v.0.0.1</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-articulos">
+<span id="articulos-module"></span><h1>articulos module<a class="headerlink" href="#module-articulos" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="articulos.Articulos">
+<em class="property">class </em><code class="sig-prename descclassname">articulos.</code><code class="sig-name descname">Articulos</code><a class="reference internal" href="../_modules/articulos.html#Articulos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="articulos.Articulos.AltaArticulos">
+<em class="property">static </em><code class="sig-name descname">AltaArticulos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.AltaArticulos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.AltaArticulos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que carga los datos de los artículos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Guarda los datos en art, añade una nueva fila con .insertRow(), guarda los datos en la base de datos
+con el metodo  .altaArt(newart) y recarga la tabla de los articulos para que aparezcan los nuevos productos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="articulos.Articulos.bajaArticulo">
+<em class="property">static </em><code class="sig-name descname">bajaArticulo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.bajaArticulo"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.bajaArticulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo con el que elegimos el producto que va a ser borrado según el código que seleccionemos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Tras seleccionar el producto en la tabla, aprovechamos que están cargados los datos y lo borramos cogiendo
+el código del producto.
+Llamamos al metodo confirmBorrarProducto para que el usuario confirme el borrado del producto, y si es así,
+recargamos la tabla de los articulos y limpiamos la seccion de productos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="articulos.Articulos.cargarArt">
+<em class="property">static </em><code class="sig-name descname">cargarArt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.cargarArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.cargarArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que carga los datos del articulo seleccionado, para poder hacerle modificaciones o, ver su precio, codigo, etc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Guardamos los datos del artículo seleccionado y llamamos al metodo de conexión para que nos muestre los datos del articulo</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="articulos.Articulos.limpiarProd">
+<em class="property">static </em><code class="sig-name descname">limpiarProd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.limpiarProd"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.limpiarProd" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Metodo que limpia la sección de artículos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Guardamos todas la variables que vamos a limpiar en  articulos[] y posteriormente, lo recorremos con un bucle «for»
+y ponemos los editText y labels a vacío.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="articulos.Articulos.modifArticulos">
+<em class="property">static </em><code class="sig-name descname">modifArticulos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.modifArticulos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.modifArticulos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Método para modificar algun dato de los artíctulos (puede ser cualquier dato, menos el código del producto)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Cargamos todos los editText (ya que, se pudo haber modificado más de uno) y llamamos a confirmModificación para
+que el usuario confirme los cambios y poder así, actualizar los datos en la BBDD.
+Luego recargamos la tabla de articulos para poder ver los datos que hemos modificado.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="articulos.Articulos.reloadArt">
+<em class="property">static </em><code class="sig-name descname">reloadArt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articulos.html#Articulos.reloadArt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#articulos.Articulos.reloadArt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Módulo que limpia y recarga la tabla de artículos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Llamamos al método limpiarProd() para dejar limpia la sección de artículos y posteriormente, recargamos la tabla de
+artículos con el método de .mostrarArticulos()</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">VILAPEREIRA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Samuel Vila Pereira.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/articulos.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
